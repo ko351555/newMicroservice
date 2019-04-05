@@ -1,0 +1,20 @@
+{
+  "dummy": {
+    "name": "dummy",
+    "baseURL": "",
+    "crud": false,
+    "connector": "rest"
+  },
+  "new": {
+    "name": "new",
+    "localStorage": "",
+    "file": "",
+    "connector": "memory"
+  },
+  "restapi": {
+    "name": "restapi",
+    "baseURL": "",
+    "crud": true,
+    "connector": "rest"
+  }
+}

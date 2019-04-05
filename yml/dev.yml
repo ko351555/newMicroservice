@@ -1,0 +1,26 @@
+node-example-microservice:
+  extends:
+    file: "docker-compose.yml"
+    service: "node-example-microservice"
+  links:
+    - mock-server
+  volumes:
+    - ..:/usr/src/app
+    - /usr/src/app/node_modules
+  command: npm run dev
+  environment:
+    - APP_HOST=0.0.0.0
+    - APP_PORT=3000
+    - LOCAL_MOCK_SERVER=mock-server
+    - LOCAL_MOCK_PORT=1080
+    - USERS_SERVICE_BASE_URL=http://mock-server:1080/node-example-enterprise-service/v1.0
+    - TODOS_SERVICE_BASE_URL=http://mock-server:1080/node-example-enterprise-service/v1.0
+  ports:
+    - "3000:3000"
+
+mock-server:
+  image: 10.112.159.88:40007/jamesdbloom/mockserver:mockserver-3.11
+  environment:
+    - JVM_OPTIONS=-Dmockserver.enableCORSForAPI=false
+  ports:
+    - "1080:1080"

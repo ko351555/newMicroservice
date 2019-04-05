@@ -1,0 +1,9 @@
+applications:
+- name: ob-core-node-example-microservice
+  org: POC18_PSD2   #change based on your environement
+  space: Dev #change based on your environement
+  disk_quota: 256M
+  memory: 256M
+  env:
+    NODE_ENV: development
+    NODE_MODULES_CACHE: false

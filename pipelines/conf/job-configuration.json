@@ -1,0 +1,120 @@
+{
+  "journey": "ob-core",
+  "packaging": {
+    "npm_options": "--only=prod"
+  },
+  "builder": {
+    "dockerimage": "node610",
+    "label": "ob-docker"
+  },
+  "nexus": {
+    "api": "http://nexus.sandbox.extranet.group/nexus/service/local/artifact/maven/content",
+    "groupId": "com.lbg.ob.core",
+    "artifactId": "node-example-microservice"
+  },
+  "git": {
+    "creds_id": "83e374e2-2bb6-4479-9d16-5c73169a1109"
+  },
+  "sonar": {
+    "exclusions": "**/pipelines/**,Jenkinsfile,specs/**,tests/**,node_modules/**,central-scripts/**,coverage/**,server/server.js,lib/**,tests/**,mock/**",
+    "coverage_exclusions": "**/pipelines/**,Jenkinsfile,specs/**,tests/**,node_modules/**,central-scripts/**,coverage/**,server/server.js,lib/**,**/app.jsx,**/*spec.js,tests/**,server/**,mock/**",
+    "quality_gate": "OB-CNF-API-QG",
+    "server_id": "SONAR-main"
+  },
+  "bdd": {
+    "invocation": "npm run test:component:cucumber"
+  },
+  "passthresholds": {
+    "bdd": {
+      "percent_scenarios": "95"
+    }
+  },
+  "splunk": {
+    "reportdir": "/apps/splunkreports/ob-cnf-web-bdd",
+    "differentdir": "Cant see a structure",
+    "host": "10.113.140.187"
+  },
+  "zap": {
+    "sonarQuality_gate": "OB-ZAP-QG",
+    "resultdir": "zap-report"
+  },
+  "sauce": {
+    "credentials": {
+      "daily": "SAUCELABS_PCA_DAY"
+    }
+  },
+  "defaults": {
+    "tag": "B92"
+  },
+  "bluemix": {
+    "domain": "lbg.eu-gb.bluemix.net",
+    "api": "api.lbg.eu-gb.bluemix.net",
+    "credentials": "bluemix-global-deployer"
+  },
+  "environments": {
+    "ci": {
+      "disk": "1024M",
+      "memory": "1024M",
+      "bluemix": {
+        "org": "POC27_PSD2_AAF",
+        "env": "DEV"
+      },
+      "env": {
+        "APP_HOST": "0.0.0.0",
+        "OUTBOUND_TLS_CA_CERTS_BUNDLE": "",
+        "OUTBOUND_TLS_PASSPHRASE_JSON": "",
+        "OUTBOUND_TLS_CERT": "",
+        "OUTBOUND_TLS_PRIVATE_KEY": "",
+        "APP_LOG_LEVEL": "debug",
+        "APP_LOG_PATH": "logs/app.log",
+        "TRACE_LOG_LEVEL": "debug",
+        "TRACE_LOG_PATH": "logs/trace.log",
+        "SECURITY_LOG_PATH": "logs/security.log",
+        "SECURITY_MAX_LOG_SIZE": "104857600",
+        "SECURITY_LOG_LEVEL": "info",
+        "ENTERPRISE_SERVICE_BASE_URL": "http://ob-core-node-example-api-mock.lbg.eu-gb.mybluemix.net",
+        "ENABLE_RESPONSE_VALIDATION": "true",
+        "CIRCUIT_BREAKER_TIMEOUT": "60000",
+        "CIRCUIT_BREAKER_OPEN_TIMEOUT_IN_MS": "60000",
+        "CIRCUIT_BREAKER_ERROR_THRESHOLD_PERCENTAGE": "50",
+        "CIRCUIT_BREAKER_MINIMUM_REQUEST_FOR_HEALTHCHECK": "10",
+        "CIRCUIT_BREAKER_EXECUTION_TRACK_WINDOW": "10000",
+        "CIRCUIT_BREAKER_WINDOW_BUCKER": "10",
+        "CIRCUIT_BREAKE_ENABLED": "false",
+        "ENABLE_ANALYTICS": "false"
+      }
+    },
+    "master": {
+      "disk": "1024M",
+      "memory": "1024M",
+      "bluemix": {
+          "org": "POC27_PSD2_AAF",
+          "env": "DEV"
+      },
+      "env": {
+        "APP_HOST": "0.0.0.0",
+        "OUTBOUND_TLS_CA_CERTS_BUNDLE": "",
+        "OUTBOUND_TLS_PASSPHRASE_JSON": "",
+        "OUTBOUND_TLS_CERT": "",
+        "OUTBOUND_TLS_PRIVATE_KEY": "",
+        "APP_LOG_LEVEL": "debug",
+        "APP_LOG_PATH": "logs/app.log",
+        "TRACE_LOG_LEVEL": "debug",
+        "TRACE_LOG_PATH": "logs/trace.log",
+        "SECURITY_LOG_PATH": "logs/security.log",
+        "SECURITY_MAX_LOG_SIZE": "104857600",
+        "SECURITY_LOG_LEVEL": "info",
+        "ENTERPRISE_SERVICE_BASE_URL": "http://ob-core-node-example-api-mock.lbg.eu-gb.mybluemix.net",
+        "ENABLE_RESPONSE_VALIDATION": "true",
+        "CIRCUIT_BREAKER_TIMEOUT": "60000",
+        "CIRCUIT_BREAKER_OPEN_TIMEOUT_IN_MS": "60000",
+        "CIRCUIT_BREAKER_ERROR_THRESHOLD_PERCENTAGE": "50",
+        "CIRCUIT_BREAKER_MINIMUM_REQUEST_FOR_HEALTHCHECK": "10",
+        "CIRCUIT_BREAKER_EXECUTION_TRACK_WINDOW": "10000",
+        "CIRCUIT_BREAKER_WINDOW_BUCKER": "10",
+        "CIRCUIT_BREAKE_ENABLED": "false",
+        "ENABLE_ANALYTICS": "false"
+      }
+    }
+  }
+}

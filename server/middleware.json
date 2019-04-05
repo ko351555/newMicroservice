@@ -1,0 +1,70 @@
+{
+  "initial:before": {
+    "loopback#favicon": {}
+  },
+  "initial": {
+    "loopback-context#per-request": {
+      "params": {
+        "enableHttpContext": true
+      }
+    },
+    "compression": {},
+    "cors": {
+      "params": {
+        "origin": true,
+        "credentials": true,
+        "maxAge": 86400
+      }
+    },
+    "helmet#xssFilter": {},
+    "helmet#frameguard": {
+      "params": [
+        "deny"
+      ]
+    },
+    "helmet#hsts": {
+      "params": {
+        "maxAge": 0,
+        "includeSubdomains": true
+      }
+    },
+    "helmet#hidePoweredBy": {},
+    "helmet#ieNoOpen": {},
+    "helmet#noSniff": {},
+    "helmet#noCache": {
+      "enabled": false
+    }
+  },
+  "session": {},
+  "auth": {},
+  "parse": {
+    "body-parser#json": {},
+    "ob-core-common-modules/utils/xss-detection": {}
+  },
+  "routes": {
+    "loopback#rest": {
+      "paths": [
+        "${restApiRoot}"
+      ]
+    }
+  },
+  "files": {},
+  "final": {
+    "loopback#urlNotFound": {}
+  },
+  "final:after": {
+    "ob-core-security-logger#loggerUtil": {
+      "params": {
+        "level": "info",
+        "serviceName": "ob-core-node-example-microservice"
+      }
+    },
+    "./middleware/error-handler": {},
+    "strong-error-handler": {
+      "params": {
+        "debug": true,
+        "log": true
+      }
+    }
+  }
+}

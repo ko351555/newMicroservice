@@ -1,0 +1,7 @@
+{
+  "error": {
+    "statusCode": 400,
+    "message": "API error",
+    "code": "BOILERPLATE_API_ERR_003"
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "consumer": {
+    "name": "ob-core-node-example-microservice"
+  },
+  "provider": {
+    "name": "enterprise-api"
+  },
+  "interactions": [
+    {
+      "description": "a request to get user with ID 1",
+      "providerState": "when enterprise api server is up",
+      "request": {
+        "method": "GET",
+        "path": "/users/1"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "id": 1,
+          "name": "Leanne Graham",
+          "username": "Bret",
+          "email": "Sincere@april.biz",
+          "address": {
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {
+              "lat": "-37.3159",
+              "lng": "81.1496"
+            }
+          },
+          "phone": "1-770-736-8031 x56442",
+          "website": "hildegard.org",
+          "company": {
+            "name": "Romaguera-Crona",
+            "catchPhrase": "Multi-layered client-server neural-net",
+            "bs": "harness real-time e-markets"
+          }
+        },
+        "matchingRules": {
+          "$.body.id": {
+            "match": "type"
+          },
+          "$.body.name": {
+            "match": "type"
+          },
+          "$.body.username": {
+            "match": "type"
+          },
+          "$.body.email": {
+            "match": "type"
+          },
+          "$.body.address.street": {
+            "match": "type"
+          },
+          "$.body.address.suite": {
+            "match": "type"
+          },
+          "$.body.address.city": {
+            "match": "type"
+          },
+          "$.body.address.zipcode": {
+            "match": "type"
+          },
+          "$.body.address.geo.lat": {
+            "match": "type"
+          },
+          "$.body.address.geo.lng": {
+            "match": "type"
+          },
+          "$.body.phone": {
+            "match": "type"
+          },
+          "$.body.website": {
+            "match": "type"
+          },
+          "$.body.company.name": {
+            "match": "type"
+          },
+          "$.body.company.catchPhrase": {
+            "match": "type"
+          },
+          "$.body.company.bs": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "a request to get todos with user ID 1",
+      "providerState": "when enterprise api server is up",
+      "request": {
+        "method": "GET",
+        "path": "/todos",
+        "query": "userId=1"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": [
+          {
+            "userId": 1,
+            "id": 1,
+            "title": "delectus aut autem",
+            "completed": false
+          }
+        ],
+        "matchingRules": {
+          "$.body": {
+            "min": 1
+          },
+          "$.body[*].*": {
+            "match": "type"
+          },
+          "$.body[*].userId": {
+            "match": "type"
+          },
+          "$.body[*].id": {
+            "match": "type"
+          },
+          "$.body[*].title": {
+            "match": "type"
+          },
+          "$.body[*].completed": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

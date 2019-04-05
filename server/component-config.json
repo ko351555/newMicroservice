@@ -1,0 +1,28 @@
+{
+  "./components/disable-remote-api-methods": {
+    "User": [
+      "listDS",
+      "getDS",
+      "invoke"
+    ],
+    "Todo": [
+      "listDS",
+      "invoke"
+    ]
+  },
+  "ob-core-common-modules/utils/swagger-tools": {
+    "swaggerUi": {
+      "docsMountPath": "/explorer",
+      "apiDocsMountPath": "/api-docs"
+    },
+    "swaggerApiDef": {
+      "dirPath": "definitions",
+      "fileName": "ob-core-node-example-microservice-swagger.yaml"
+    },
+    "responseValidation": {
+      "User.list": "#/definitions/Users",
+      "User.get": "#/definitions/User"
+    }
+  },
+  "ob-core-node-logger/components/trace-logger": {}
+}

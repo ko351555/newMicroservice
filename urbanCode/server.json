@@ -1,0 +1,5 @@
+{
+  "appPort": "%%wlpn.appserver.app.port%%",
+  "adminPort": "%%wlpn.appserver.admin.port%%",
+  "contextRoot": "node-example-microservice/v1.0"
+}

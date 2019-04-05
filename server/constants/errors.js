@@ -1,0 +1,7 @@
+// TODO change these for your particular lab
+
+module.exports = {
+  GENERIC: 'BOILERPLATE_API_ERR_001',
+  VALIDATION_FAILED: 'BOILERPLATE_API_ERR_002',
+  DOWNSTREAM_ERROR: 'BOILERPLATE_API_ERR_003'
+};

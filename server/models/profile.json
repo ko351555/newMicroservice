@@ -1,0 +1,54 @@
+{
+  "name": "profile",
+  "plural": "profiles",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {
+    "list": {
+      "accepts": [
+        {
+          "arg": "x-lbg-channel",
+          "type": "string",
+          "required": true,
+          "http": {
+            "source": "header"
+          }
+        },
+        {
+          "arg": "x-lbg-brand",
+          "type": "string",
+          "required": true,
+          "http": {
+            "source": "header"
+          }
+        },
+        {
+          "arg": "x-lbg-txn-correlation-id",
+          "type": "string",
+          "required": true,
+          "http": {
+            "source": "header"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "body",
+          "type": "array",
+          "root": true
+        }
+      ],
+      "http": {
+        "verb": "get",
+        "path": "/"
+      }
+    },
+  }
+}

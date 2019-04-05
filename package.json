@@ -1,0 +1,116 @@
+{
+  "name": "ob-core-node-example-microservice",
+  "layer": "channel",
+  "version": "1.0.0",
+  "description": "Node example channel service",
+  "main": "server/server.js",
+  "config": {
+    "repository": "https://nexus.sandbox.extranet.group/nexus/content/groups/npm-master/",
+    "pact_binary_location": "./node_modules/ob-core-pact-node-wrapper/bin"
+  },
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon --exec \"(npm run test:unit --silent && npm run test:component:supertest --silent) & npm start --silent\"",
+    "watch": "nodemon .",
+    "debug": "DEBUG=* node .",
+    "format": "semistandard --env mocha --fix",
+    "setup-mocks": "node ./mock/setup.js",
+    "pretest": "npm run setup-mocks",
+    "test": "npm run test:coverage npm run test:unit && npm run test:contract && npm run test:component",
+    "test:coverage": "nyc",
+    "test:unit": "mocha --compilers js:babel-core/register --exit './server/**/*.spec.js'",
+    "test:contract": "ENTERPRISE_SERVICE_BASE_URL=http://localhost:2202 PACT_PORT=2202 mocha --compilers js:babel-core/register --exit --timeout 100000 tests/contract/**/*.pact.js",
+    "test:component": "APP_PORT=0 MOCHAWESOME_REPORTDIR=./tests/component/reports MOCHAWESOME_REPORTFILENAME=mocha-report mocha --compilers js:babel-core/register --exit --timeout 100000 --reporter mochawesome './tests/component/**/*.spec.js'",
+    "test:performance": "run-p -r start test:performance:start",
+    "test:performance:start": "timestamp=$(date '+%Y-%m-%d-%H-%M-%S') && minigun run tests/performance/test.json -o tests/performance/reports/report-${timestamp}.json && minigun report tests/performance/reports/report-${timestamp}.json"
+  },
+  "engines": {
+    "node": "6.10.2",
+    "npm": "3.10.10"
+  },
+  "dependencies": {
+    "babel-preset-es2017": "6.24.1",
+    "babel-register": "^6.26.0",
+    "compression": "1.6.2",
+    "cors": "2.8.3",
+    "dotenv": "^4.0.0",
+    "exception-handler": "1.1.0",
+    "helmet": "3.6.1",
+    "loopback": "3.18.2",
+    "loopback-boot": "2.27.1",
+    "loopback-component-explorer": "4.2.0",
+    "loopback-connector-rest": "^2.1.0",
+    "loopback-context": "^3.3.0",
+    "ob-core-audit-logger": "4.0.1",
+    "ob-core-circuit-breaker": "3.1.0",
+    "ob-core-common-modules": "1.0.3",
+    "ob-core-node-logger": "^2.0.0",
+    "ob-core-security-logger": "2.0.0",
+    "ob-tpp-lbg-analytics": "1.2.1",
+    "strong-error-handler": "2.1.0",
+    "winston-daily-rotate-file": "3.5.1"
+  },
+  "devDependencies": {
+    "chai": "4.1.2",
+    "eslint": "4.12.1",
+    "eslint-config-semistandard": "12.0.0",
+    "eslint-config-standard": "11.0.0-beta.0",
+    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-node": "6.0.0",
+    "eslint-plugin-promise": "3.6.0",
+    "minigun": "1.3.4",
+    "mocha": "5.0.0",
+    "mochawesome": "3.0.2",
+    "mockserver-client": "^5.3.0",
+    "nodemon": "1.17.2",
+    "npm-run-all": "4.1.2",
+    "nyc": "10.2.0",
+    "ob-core-pact-node-wrapper": "1.0.0",
+    "request": "2.83.0",
+    "request-promise": "4.2.2",
+    "semistandard": "12.0.0",
+    "sinon": "4.3.0",
+    "supertest": "3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "gerrit.sandbox.extranet.group:29418/ob-core-node-example-microservice"
+  },
+  "nyc": {
+    "include": [
+      "server/**/*.js"
+    ],
+    "exclude": [
+      "server/**/*.spec.js",
+      "server/boot/*",
+      "server/datasources/*",
+      "server/server.js",
+      "server/api.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text",
+      "text-summary"
+    ],
+    "check-coverage": true,
+    "lines": 100,
+    "statements": 100,
+    "functions": 100,
+    "branches": 100
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "logs",
+      "coverage",
+      ".nyc_output",
+      "urbanCode",
+      "**/*-report.json",
+      "**/*-report.html"
+    ]
+  },
+  "author": {
+    "name": "Ed Kelly",
+    "email": "ekelly@sapient.com"
+  },
+  "license": "UNLICENSED"
+}

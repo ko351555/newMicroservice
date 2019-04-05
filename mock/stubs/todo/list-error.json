@@ -1,0 +1,22 @@
+{
+  "name": "listTodosError",
+  "request": {
+    "method": "GET",
+    "path": "/todos",
+    "headers": {
+      "x-lbg-channel": "BB",
+      "x-lbg-brand": "LYDS",
+      "x-lbg-txn-correlation-id": "12345"
+    }
+  },
+  "response": {
+    "statusCode": 400,
+    "body": {
+      "error": {
+        "statusCode": 400,
+        "message": "Oops! This system behaved unexpectedly",
+        "code": "MOCK_ERR_003"
+      }
+    }
+  }
+}

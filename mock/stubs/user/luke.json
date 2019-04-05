@@ -1,0 +1,31 @@
+{
+    "name": "directDebits",
+    "request": {
+        "method": "GET",
+        "path": "/direct-debits",
+        "headers": {
+            "x-lbg-channel": "BB",
+            "x-lbg-brand": "LYDS",
+            "x-lbg-txn-correlation-id": "12345"
+        }
+    },
+    "response": {
+        "statusCode": 200,
+        "body": {
+            "Data": {
+                "DirectDebit": [
+                    {
+                        "AccountId": "22289",
+                        "Name": "British Gas",
+                        "MandateIdentification": "AUDDISBG"
+                  },
+                  {
+                    "AccountId": "22290",
+                    "Name": "British Electricity",
+                    "MandateIdentification": "XCDSSUGD"
+              }
+                ]
+            }
+        }
+    }
+}
