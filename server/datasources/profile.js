@@ -7,7 +7,7 @@ const headers = {
 };
 
 module.exports = {
-  name: 'todos',
+  name: 'profile',
   crud: true,
   connector: 'rest',
   uri: ENTERPRISE_SERVICE_BASE_URL,

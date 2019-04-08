@@ -12,52 +12,53 @@ consumes:
 produces:
   - application/json
 paths:
-  /direct-debits:    get:
-        summary: >-
-          Get all the profiledirectdebit and their todos
-        operationId: profile.list
-        parameters:
-          - $ref: '#/parameters/xLbgBrand'
-          - $ref: '#/parameters/xLbgChannel'
-          - $ref: '#/parameters/xLbgTxnCorrelationId'
-        tags:
-          - Get profileService
-        responses:
-          '200':
-            description: Successful response contains an array of Profile
-            schema:
-              $ref: '#/responses/Profile'
-            headers:
-              Strict-Transport-Security:
-                default: max-age=0
-                description: HTTPS strict transport security header
-                type: string
-              Cache-Control:
-                default: 'max-age=0,no-cache,no-store'
-                type: string
-                description: Describes how long this response can be cached
-              X-Frame-Options:
-                default: DENY
-                type: string
-                description: Prevent this request from being loaded in any iframes
-              X-Content-Type-Options:
-                type: string
-                description: >-
-                  Ensures each page has a content type and prevents browsers from
-                  doing MIME type sniffing
-                default: nosniff
-          '400':
-            $ref: '#/responses/Error400'
-          '401':
-            $ref: '#/responses/Error401'
-          '403':
-            $ref: '#/responses/Error403'
-          '415':
-            $ref: '#/responses/Error415'
-          '500':
-            $ref: '#/responses/Error500'
-          '503':
-            $ref: '#/responses/Error503'
+  /profiles:    
+    get:
+      summary: >-
+        Get all the profiledirectdebit and their todos
+      operationId: profile.list
+      parameters:
+        - $ref: '#/parameters/xLbgBrand'
+        - $ref: '#/parameters/xLbgChannel'
+        - $ref: '#/parameters/xLbgTxnCorrelationId'
+      tags:
+        - Get profileService
+      responses:
+        '200':
+          description: Successful response contains an array of Profile
+          schema:
+            type: object
+          headers:
+            Strict-Transport-Security:
+              default: max-age=0
+              description: HTTPS strict transport security header
+              type: string
+            Cache-Control:
+              default: 'max-age=0,no-cache,no-store'
+              type: string
+              description: Describes how long this response can be cached
+            X-Frame-Options:
+              default: DENY
+              type: string
+              description: Prevent this request from being loaded in any iframes
+            X-Content-Type-Options:
+              type: string
+              description: >-
+                Ensures each page has a content type and prevents browsers from
+                doing MIME type sniffing
+              default: nosniff
+        '400':
+          $ref: '#/responses/Error400'
+        '401':
+          $ref: '#/responses/Error401'
+        '403':
+          $ref: '#/responses/Error403'
+        '415':
+          $ref: '#/responses/Error415'
+        '500':
+          $ref: '#/responses/Error500'
+        '503':
+          $ref: '#/responses/Error503'
   /users:
     get:
       summary: >-
